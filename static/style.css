@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@import "https://fonts.googleapis.com/css?family=Poppins:300";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: radial-gradient(farthest-corner at 0 0, #FED64C, #FD7B42 20%, #CF388C, #4861CA);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.pagina-login {
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin: auto;
+}
+
+form {
+    font-family: "Poppins";
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    box-sizing: border-box;
+}
+
+.pagina-login form input {
+    width: 100%;
+    background-color: #dddddd;
+    padding: 8px;
+    border: 0;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.pagina-login form input:focus {
+    background-color: #cfcfcf;
+    border: 0;
+}
+
+.pagina-login input[type="submit"] {
+    background-color: #CF388C;
+    color: #fff;
+    font-size: 18px;
+    transition: 200ms;
+}
+
+.pagina-login input[type="submit"]:hover,
+.pagina-login input[type="submit"]:active,
+.pagina-login input[type="submit"]:focus {
+    background-color: #a72d70;
+    cursor: pointer;
+}
+
+.pagina-login form p {
+    font-size: 0.8em;
+}
+
+.pagina-login form a {
+    text-decoration: none;
+    color: #4861CA;
+}
+
+form#form-cadastro {
+    display: none;
+}
