@@ -12,3 +12,7 @@ $("#form-cadastro").submit(function () {
         return false;
     }
 });
+
+$("#verificar-data-limite").click(function () {
+    $("#data-limite").toggle();
+});
