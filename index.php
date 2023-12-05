@@ -26,7 +26,7 @@
             <p>Já tem uma conta? <a href="#">Entrar</a></p>
         </form>
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script src="static/script.js"></script>
+        <script src="static/script.js?v=<?= time() ?>"></script>
         <p style="margin-top: 10px">Desenvolvido por: <a href="https://instagram.com/lemelinha_" target="_blank" class="autoria">@lemelinha_</a></p>
     </div>
 </body>
