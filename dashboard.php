@@ -6,13 +6,26 @@
     <title>Minha Agenda</title>
     <link rel="stylesheet" href="static/style.css?v=<?= time() ?>">
     <?php
+        ob_start();
         date_default_timezone_set("America/Sao_Paulo");
+
+        require_once "static/functions.php";
+
+        if(!ValidarToken()) {
+            $_SESSION["msg"] = "<p style='color:#f00;'>Efetue o Login para entrar nessa página</p>";
+
+            setcookie("token");
+
+            header("Location: index.php");
+            exit();
+        }
+        $token = RecuperarDadosToken();
     ?>
 </head>
 <body style="background-color: #212152;">
     <div class="pagina-nova-tarefa">
-        <h1>Olá XXXX</h1>
-        <button class="btn">Sair</button>
+        <h1>Olá <?= $token->nm_usuario ?></h1>
+        <button class="btn" onclick="javascript:window.location.href = 'logout.php'">Sair</button>
         <form method="get">
             <h1>Nova tarefa</h1>
             <input type="text" name="nome-nova-tarefa" id="nome-nova-tarefa" required placeholder="Nome da Nova Tarefa">
