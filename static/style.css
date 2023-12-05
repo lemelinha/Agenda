@@ -72,10 +72,6 @@ form a, a.autoria {
     color: #4861CA;
 }
 
-form#form-cadastro {
-    display: none;
-}
-
 .btn {
     font-size: 16px;
     font-weight: bold;

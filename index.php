@@ -11,9 +11,14 @@
         require_once "static/connection.php";
         require_once "static/functions.php";
 
+        echo "<style>#form-cadastro{ display: none; }</style>";
+
         if(!empty($_GET)){
             if($_GET['form'] == "Logar"){
-                $sucesso = LoginUsuario($_GET["usuario-login"], $_GET["senha-login"]);
+                LoginUsuario($_GET["usuario-login"], $_GET["senha-login"]);
+            }
+            if($_GET['form'] == "Cadastrar") {
+                CadastrarUsuario($_GET["usuario-cadastro"], $_GET["senha-cadastro"]);
             }
         }
         if (ValidarToken()) {
@@ -29,21 +34,27 @@
             <input type="password" name="senha-login" id="senha-login" required placeholder="Senha">
             <input type="submit" value="Logar" name="form">
             <?php 
-                if(isset($_SESSION["msg"])){
-                    echo $_SESSION["msg"];
-                    unset($_SESSION["msg"]);
+                if(isset($_SESSION["msg-login"])){
+                    echo $_SESSION["msg-login"];
+                    unset($_SESSION["msg-login"]);
                 }
             ?>
             <p>Não tem uma conta? <a href="#">Criar uma</a></p>
         </form>
 
-        <form method="get" id="form-cadastro">
+        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="get" id="form-cadastro">
             <h1>Cadastro</h1>
             <input type="text" name="usuario-cadastro" id="usuario-cadastro" required placeholder="Crie um Usuário">
             <input type="password" name="senha-cadastro" id="senha-cadastro" required placeholder="Crie uma Senha">
             <input type="password" id="senha-cadastro-confirmar" required placeholder="Confirmar Senha">
             <p id="confirmar-senha"></p>
             <input type="submit" value="Cadastrar" name="form">
+            <?php 
+                if(isset($_SESSION["msg-cadastro"])){
+                    echo $_SESSION["msg-cadastro"];
+                    unset($_SESSION["msg-cadastro"]);
+                }
+            ?>
             <p>Já tem uma conta? <a href="#">Entrar</a></p>
         </form>
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

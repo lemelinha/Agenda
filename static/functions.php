@@ -19,7 +19,7 @@
             //echo "encontrei o usuario " . $tupla_usuario["nm_usuario"];
             SalvarLogin($tupla_usuario);
         } else {
-            $_SESSION["msg"] = "<p style='color:#f00;'>Usuário ou senha inválidos</p>";
+            $_SESSION["msg-login"] = "<p style='color:#f00;'>Usuário ou senha inválidos</p>";
         }
     }
 
@@ -91,5 +91,55 @@
         $payload = json_decode($payload);
     
         return $payload;
+    }
+
+    function CadastrarUsuario($usuario, $senha){
+        $sql = "
+                select nm_usuario
+                from tb_usuarios
+                where nm_usuario = :usuario
+                limit 1
+        ";
+
+        $verificar_usuario = $GLOBALS["conn"]->prepare($sql);
+        $verificar_usuario->bindParam("usuario", $usuario);
+        $verificar_usuario->execute();
+
+        $tupla_usuario = $verificar_usuario->fetch(PDO::FETCH_ASSOC);
+        if(!$tupla_usuario) {
+            $sql = "
+                    insert into tb_usuarios
+                    (nm_usuario, cd_senha) values
+                    (:usuario, :senha)
+            ";
+
+            $cadastrar_usuario = $GLOBALS["conn"]->prepare($sql);
+            $cadastrar_usuario->bindParam("usuario", $usuario);
+            $cadastrar_usuario->bindParam("senha", password_hash($senha, PASSWORD_DEFAULT));
+            $cadastrar_usuario->execute();
+            
+            $sql = "
+                select nm_usuario
+                from tb_usuarios
+                where nm_usuario = :usuario
+                limit 1
+            ";
+
+            $usuario_cadastrado = $GLOBALS["conn"]->prepare($sql);
+            $usuario_cadastrado->bindParam("usuario", $usuario);
+            $usuario_cadastrado->execute();
+
+            $tupla_usuario = $usuario_cadastrado->fetch(PDO::FETCH_ASSOC);
+
+            SalvarLogin($tupla_usuario);
+        } else {
+            $_SESSION["msg-cadastro"] = "<p style='color:#f00;'>Já existe um usuário com esse nome</p>";
+            echo "
+                <style>
+                    #form-cadastro{ display: flex; }
+                    #form-login{ display: none; }
+                </style>
+            ";
+        }
     }
 ?>

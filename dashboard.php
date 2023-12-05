@@ -12,7 +12,7 @@
         require_once "static/functions.php";
 
         if(!ValidarToken()) {
-            $_SESSION["msg"] = "<p style='color:#f00;'>Efetue o Login para entrar nessa página</p>";
+            $_SESSION["msg-login"] = "<p style='color:#f00;'>Efetue o Login para entrar nessa página</p>";
 
             setcookie("token");
 
