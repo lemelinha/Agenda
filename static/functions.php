@@ -162,4 +162,61 @@
 
         header("Location: dashboard.php");
     }
+
+    function ListarTarefas($cd_usuario){
+        $sql = "
+                select nm_tarefa, ds_tarefa, dt_registro, dt_prazo from tb_tarefas
+                where id_usuario = :cdusuario and
+                st_tarefa = 'P'
+                order by dt_registro desc
+        ";
+
+        $minhas_tarefas = $GLOBALS["conn"]->prepare($sql);
+        $minhas_tarefas->bindParam('cdusuario', $cd_usuario);
+        $minhas_tarefas->execute();
+
+        $minhas_tarefas = $minhas_tarefas->fetchALL(PDO::FETCH_ASSOC);
+        //var_dump($minhas_tarefas);
+
+        for ($i=0; $i<sizeof($minhas_tarefas); $i++) {
+            $nome_tarefa = $minhas_tarefas[$i]["nm_tarefa"];
+            $desc_tarefa = $minhas_tarefas[$i]["ds_tarefa"];
+
+            $dt_registro = date_create($minhas_tarefas[$i]["dt_registro"]);
+            $dt_registro = date_format($dt_registro, "d/m/Y");
+            
+            $dt_atual = date("Y-m-d");
+            $dt_prazo = $minhas_tarefas[$i]["dt_prazo"];
+
+            $dt_atual = str_replace("-", "", $dt_atual);
+            $dt_prazo = str_replace("-", "", $dt_prazo);
+
+            if ($dt_atual<$dt_prazo) {
+                $cor_data_prazo = "116811";
+            } else {
+                $cor_data_prazo = "b81f1f";
+            }
+
+            $dt_prazo = date_create($dt_prazo);
+            $dt_prazo = date_format($dt_prazo, "d/m/Y");
+
+            ?>
+                <div class="tarefa">
+                    <h2><?= $nome_tarefa ?></h2>
+                    <p class="desc-tarefa">
+                    <?= $desc_tarefa ?>
+                    </p>
+
+                    <span>Adicionado em: <?= $dt_registro ?></span>
+                    <span>Prazo: <span style="color: #<?= $cor_data_prazo ?>; font-weight: bold;"><?= $dt_prazo ?></span></span>
+
+                    <div class="botoes">
+                        <button class="btn" id="btn-concluida">Concluída</button>
+                        <button class="btn" id="btn-excluir">Excluir</button>
+                    </div>
+                    <hr style="width: 100%; height: 2px; background-color: #000; border: 0;">
+                </div>
+            <?php
+        }
+    }
 ?>

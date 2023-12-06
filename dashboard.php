@@ -31,6 +31,7 @@
             <h1>Nova tarefa</h1>
             <input type="text" name="nome-nova-tarefa" id="nome-nova-tarefa" required placeholder="Nome da Nova Tarefa">
             <textarea name="desc-nova-tarefa" id="desc-nova-terefa" cols="30" rows="10" required placeholder="Descrição da tarefa"></textarea>
+            <label for="data-prazo">Prazo da tarefa:</label>
             <input type="date" name="data-prazo" id="data-prazo" min="<?= date("Y-m-d", strtotime("+1 day")) ?>" required>
             <input type="submit" value="Salvar Tarefa" name="form">
             <?php
@@ -53,19 +54,26 @@
 
     <div class="pagina-minhas-tarefas">
         <h1>Suas Tarefas</h1>
-        <div class="tarefa">
-            <h2>[nome da tarefa]</h2>
-            <p class="desc-tarefa">
-                descricao
-            </p>
-            <span>[data de registro]</span>
-            <span>[data de entrega -> verde se esta no prazo / vermelho se esta fora do prazo]</span>
-            <div class="botoes">
-                <button class="btn" id="btn-concluida">Concluída</button>
-                <button class="btn" id="btn-excluir">Excluir</button>
+        
+        <?php
+            ListarTarefas($token->cd_usuario);
+        ?>
+
+        <!-- MODELO
+            <div class="tarefa">
+                <h2>[nome da tarefa]</h2>
+                <p class="desc-tarefa">
+                    descricao
+                </p>
+                <span>[data de registro]</span>
+                <span>[data de entrega -> verde se esta no prazo / vermelho se esta fora do prazo]</span>
+                <div class="botoes">
+                    <button class="btn" id="btn-concluida">Concluída</button>
+                    <button class="btn" id="btn-excluir">Excluir</button>
+                </div>
+                <hr style="width: 100%; height: 2px; background-color: #000; border: 0;">
             </div>
-            <hr style="width: 100%; height: 2px; background-color: #000; border: 0;">
-        </div>
+        -->
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="static/script.js?v=<?= time() ?>"></script>

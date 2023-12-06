@@ -122,7 +122,7 @@ form a, a.autoria {
 }
 
 .btn#btn-excluir:hover {
-    background-color: #b81f1f;
+    background-color: #8f1212;
 }
 
 @media screen and (max-width:350px) {
