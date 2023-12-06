@@ -158,6 +158,8 @@
         $nova_tarefa->bindParam("cdusuario", $cd_usuario);
         $nova_tarefa->execute();
 
+        $_SESSION["msg-nova-tarefa"] = "<p>Tarefa adicionada</p>";
+
         header("Location: dashboard.php");
     }
 ?>

@@ -33,6 +33,12 @@
             <textarea name="desc-nova-tarefa" id="desc-nova-terefa" cols="30" rows="10" required placeholder="Descrição da tarefa"></textarea>
             <input type="date" name="data-prazo" id="data-prazo" min="<?= date("Y-m-d", strtotime("+1 day")) ?>" required>
             <input type="submit" value="Salvar Tarefa" name="form">
+            <?php
+                if(isset($_SESSION["msg-nova-tarefa"])){
+                    echo $_SESSION["msg-nova-tarefa"];
+                    unset($_SESSION["msg-nova-tarefa"]);
+                }
+            ?>
         </form>
     </div>
 
