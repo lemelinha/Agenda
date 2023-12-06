@@ -13,6 +13,3 @@ $("#form-cadastro").submit(function () {
     }
 });
 
-$("#verificar-data-limite").click(function () {
-    $("#data-limite").toggle();
-});

@@ -9,6 +9,7 @@
         ob_start();
         date_default_timezone_set("America/Sao_Paulo");
 
+        require_once "static/connection.php";
         require_once "static/functions.php";
 
         if(!ValidarToken()) {
@@ -30,14 +31,20 @@
             <h1>Nova tarefa</h1>
             <input type="text" name="nome-nova-tarefa" id="nome-nova-tarefa" required placeholder="Nome da Nova Tarefa">
             <textarea name="desc-nova-tarefa" id="desc-nova-terefa" cols="30" rows="10" required placeholder="Descrição da tarefa"></textarea>
-            <div class="data-limite" style="display: flex; flex-direction: column; row-gap: 5px;">
-                <label for="verificar-data-limite">Terá data limite?</label>
-                <input type="checkbox" name="verificar-data-limite" id="verificar-data-limite">
-                <input type="date" name="data-limite" id="data-limite" style="display: none;" min="<?= date("Y-m-d", strtotime("+1 day")) ?>" required>
-            </div>
+            <input type="date" name="data-prazo" id="data-prazo" min="<?= date("Y-m-d", strtotime("+1 day")) ?>" required>
             <input type="submit" value="Salvar Tarefa" name="form">
         </form>
     </div>
+
+    <?php
+        if(!empty($_GET)){
+            if($_GET['form'] == 'Salvar Tarefa'){
+                var_dump($token);
+                NovaTarefa($token->cd_usuario, $_GET['nome-nova-tarefa'], $_GET['desc-nova-tarefa'], $_GET['data-prazo']);
+            }
+        }
+    ?>
+
     <div class="pagina-minhas-tarefas">
         <h1>Suas Tarefas</h1>
         <div class="tarefa">

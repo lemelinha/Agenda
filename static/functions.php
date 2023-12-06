@@ -3,7 +3,7 @@
 
     function LoginUsuario($usuario, $senha){
         $sql = "
-                select nm_usuario, cd_senha 
+                select cd_usuario, nm_usuario, cd_senha 
                 from tb_usuarios
                 where nm_usuario = :usuario
                 limit 1
@@ -35,6 +35,7 @@
         $duracao = time() + strtotime("+1 month");
         $payload = [
             "exp" => $duracao,
+            "cd_usuario" => $tupla_usuario["cd_usuario"],
             "nm_usuario" => $tupla_usuario["nm_usuario"]
         ];
         $payload = json_encode($payload);
@@ -119,7 +120,7 @@
             $cadastrar_usuario->execute();
             
             $sql = "
-                select nm_usuario
+                select cd_usuario, nm_usuario
                 from tb_usuarios
                 where nm_usuario = :usuario
                 limit 1
@@ -141,5 +142,22 @@
                 </style>
             ";
         }
+    }
+
+    function NovaTarefa($cd_usuario, $nome_tarefa, $desc_tarefa, $prazo_tarefa){
+        $sql = "
+                insert into tb_tarefas
+                (cd_tarefa, nm_tarefa, ds_tarefa, dt_registro, dt_prazo, st_tarefa, dt_termino, id_usuario) values
+                (null, :nometarefa, :desctarefa, default, :dtprazo, 'P', null, :cdusuario)
+        ";
+        
+        $nova_tarefa = $GLOBALS["conn"]->prepare($sql);
+        $nova_tarefa->bindParam("nometarefa", $nome_tarefa);
+        $nova_tarefa->bindParam("desctarefa", $desc_tarefa);
+        $nova_tarefa->bindParam("dtprazo", $prazo_tarefa);
+        $nova_tarefa->bindParam("cdusuario", $cd_usuario);
+        $nova_tarefa->execute();
+
+        header("Location: dashboard.php");
     }
 ?>
