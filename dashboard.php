@@ -52,6 +52,7 @@
             <p class="desc-tarefa">
                 descricao
             </p>
+            <span>[data de registro]</span>
             <span>[data de entrega -> verde se esta no prazo / vermelho se esta fora do prazo]</span>
             <div class="botoes">
                 <button class="btn" id="btn-concluida">Concluída</button>
