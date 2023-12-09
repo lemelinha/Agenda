@@ -163,16 +163,17 @@
         header("Location: dashboard.php");
     }
 
-    function ListarTarefas($cd_usuario){
+    function ListarTarefas($cd_usuario, $st_tarefa){
         $sql = "
                 select nm_tarefa, ds_tarefa, dt_registro, dt_prazo from tb_tarefas
                 where id_usuario = :cdusuario and
-                st_tarefa = 'P'
+                st_tarefa = :sttarefa
                 order by dt_registro desc
         ";
 
         $minhas_tarefas = $GLOBALS["conn"]->prepare($sql);
         $minhas_tarefas->bindParam('cdusuario', $cd_usuario);
+        $minhas_tarefas->bindParam('sttarefa', $st_tarefa);
         $minhas_tarefas->execute();
 
         $minhas_tarefas = $minhas_tarefas->fetchALL(PDO::FETCH_ASSOC);
