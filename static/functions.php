@@ -214,7 +214,6 @@
                         <button class="btn" id="btn-concluida">Concluída</button>
                         <button class="btn" id="btn-excluir">Excluir</button>
                     </div>
-                    <hr style="width: 100%; height: 2px; background-color: #000; border: 0;">
                 </div>
             <?php
         }
