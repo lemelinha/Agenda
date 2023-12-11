@@ -45,8 +45,8 @@
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="get" id="form-cadastro">
             <h1>Cadastro</h1>
             <input type="text" name="usuario-cadastro" id="usuario-cadastro" required placeholder="Crie um Usuário">
-            <input type="password" name="senha-cadastro" id="senha-cadastro" required placeholder="Crie uma Senha">
-            <input type="password" id="senha-cadastro-confirmar" required placeholder="Confirmar Senha">
+            <input type="password" name="senha-cadastro" id="senha-cadastro" required placeholder="Crie uma Senha" minlength="8">
+            <input type="password" id="senha-cadastro-confirmar" required placeholder="Confirmar Senha" minlength="8">
             <p id="confirmar-senha"></p>
             <input type="submit" value="Cadastrar" name="form">
             <?php 

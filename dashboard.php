@@ -32,7 +32,7 @@
             <input type="text" name="nome-nova-tarefa" id="nome-nova-tarefa" required placeholder="Nome da Nova Tarefa">
             <textarea name="desc-nova-tarefa" id="desc-nova-terefa" cols="30" rows="10" required placeholder="Descrição da tarefa"></textarea>
             <label for="data-prazo">Prazo da tarefa:</label>
-            <input type="date" name="data-prazo" id="data-prazo" min="<?= date("Y-m-d", strtotime("+1 day")) ?>" required>
+            <input type="date" name="data-prazo" id="data-prazo" min="<?= date("Y-m-d") ?>" required>
             <input type="submit" value="Salvar Tarefa" name="form">
             <?php
                 if(isset($_SESSION["msg-nova-tarefa"])){
