@@ -165,7 +165,7 @@
 
     function ListarTarefas($cd_usuario, $st_tarefa){
         $sql = "
-                select nm_tarefa, ds_tarefa, dt_registro, dt_prazo from tb_tarefas
+                select cd_tarefa, nm_tarefa, ds_tarefa, dt_registro, dt_prazo from tb_tarefas
                 where id_usuario = :cdusuario and
                 st_tarefa = :sttarefa
                 order by dt_registro desc
@@ -202,7 +202,7 @@
             $dt_prazo = date_format($dt_prazo, "d/m/Y");
 
             ?>
-                <div class="tarefa">
+                <div class="tarefa" id="tarefa-<?= $minhas_tarefas[$i]["cd_tarefa"] ?>">
                     <h2><?= $nome_tarefa ?></h2>
                     <p class="desc-tarefa">
                     <?= $desc_tarefa ?>
@@ -212,8 +212,8 @@
                     <span>Prazo: <span style="color: #<?= $cor_data_prazo ?>; font-weight: bold;"><?= $dt_prazo ?></span></span>
 
                     <div class="botoes">
-                        <button class="btn" id="btn-concluida">Concluída</button>
-                        <button class="btn" id="btn-excluir">Excluir</button>
+                        <button class="btn btn-concluir" id="btn-concluir-<?= $minhas_tarefas[$i]["cd_tarefa"] ?>">Concluída</button>
+                        <button class="btn btn-excluir" id="btn-excluir-<?= $minhas_tarefas[$i]["cd_tarefa"] ?>">Excluir</button>
                     </div>
                 </div>
             <?php

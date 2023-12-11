@@ -13,3 +13,17 @@ $("#form-cadastro").submit(function () {
     }
 });
 
+$(".botoes .btn").click(function () {
+    var id_array = $(this).get(0).id.split("-");
+    var tarefa = $(`#tarefa-${id_array[2]}`);
+    var operador;
+    if (id_array[1] == "concluir"){
+        operador = '-';
+    } else {
+        operador = '+';
+    }
+    tarefa.transition({ 
+                        x: `calc(${operador}${tarefa.width()}px - (${tarefa.css("padding")}*4))`,
+                        opacity: 0 
+                    });
+});

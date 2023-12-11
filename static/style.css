@@ -93,6 +93,9 @@ form a, a.autoria {
 }
 
 .tarefa {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
     font-family: "Roboto";
     margin-bottom: 30px;
     display: flex;
@@ -114,19 +117,19 @@ form a, a.autoria {
     justify-content: space-between;
 }
 
-.btn#btn-concluida {
+.btn.btn-concluir {
     background-color: #31e431;
 }
 
-.btn#btn-excluir {
+.btn.btn-excluir {
     background-color: #d82525;
 }
 
-.btn#btn-concluida:hover {
+.btn.btn-concluir:hover {
     background-color: #26b626;
 }
 
-.btn#btn-excluir:hover {
+.btn.btn-excluir:hover {
     background-color: #8f1212;
 }
 

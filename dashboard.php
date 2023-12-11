@@ -68,13 +68,14 @@
                 <span>[data de registro]</span>
                 <span>[data de entrega -> verde se esta no prazo / vermelho se esta fora do prazo]</span>
                 <div class="botoes">
-                    <button class="btn" id="btn-concluida">Concluída</button>
+                    <button class="btn" id="btn-concluir">Concluída</button>
                     <button class="btn" id="btn-excluir">Excluir</button>
                 </div>
             </div>
         -->
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.js" integrity="sha512-VRuRE7kBxU+JQr4R/7Y75cMMdeNnn5zDZRpT4qtEzAJXdMkmFPPGbS56Ch9/Lr2g5vnwN7PxtIdBvevTMVpnug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="static/script.js?v=<?= time() ?>"></script>
 </body>
 </html>
