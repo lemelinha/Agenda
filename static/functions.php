@@ -42,7 +42,7 @@
         $payload = base64_encode($payload);
 
         //assinatura
-        $chave = "GFI6TM1WOQCLQ28IM4U3P3I5ZWA59N";
+        $chave = "GFI6TM1WOQCLQ28IM4U3P3I5ZWA59N"; //chave de simulação
         $signature = hash_hmac("sha256", "$header.$payload", $chave, true);
         $signature = base64_encode($signature);
 
@@ -65,7 +65,7 @@
         $payload = $token_array[1];
         $signature = $token_array[2];
 
-        $chave = "GFI6TM1WOQCLQ28IM4U3P3I5ZWA59N";
+        $chave = "GFI6TM1WOQCLQ28IM4U3P3I5ZWA59N"; // cahve de simulação
 
         $validar_token = hash_hmac("sha256", "$header.$payload", $chave, true);
         $validar_token = base64_encode($validar_token);
