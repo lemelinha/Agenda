@@ -23,7 +23,7 @@ $(".botoes .btn").click(function () {
         operador = '+';
     }
     tarefa.transition({ 
-                        x: `calc(${operador}${tarefa.width()}px - (${tarefa.css("padding")}*4))`,
+                        x: `calc(${operador}${tarefa.width()}px ${operador} (${tarefa.css("padding")}*4))`,
                         opacity: 0 
                     });
 });
