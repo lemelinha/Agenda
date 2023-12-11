@@ -212,7 +212,7 @@
                     <span>Prazo: <span style="color: #<?= $cor_data_prazo ?>; font-weight: bold;"><?= $dt_prazo ?></span></span>
 
                     <div class="botoes">
-                        <button class="btn btn-concluir" id="btn-concluir-<?= $minhas_tarefas[$i]["cd_tarefa"] ?>">Concluída</button>
+                        <button class="btn btn-concluir" id="btn-concluir-<?= $minhas_tarefas[$i]["cd_tarefa"] ?>">Concluir</button>
                         <button class="btn btn-excluir" id="btn-excluir-<?= $minhas_tarefas[$i]["cd_tarefa"] ?>">Excluir</button>
                     </div>
                 </div>

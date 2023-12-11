@@ -25,5 +25,15 @@ $(".botoes .btn").click(function () {
     tarefa.transition({ 
                         x: `calc(${operador}${tarefa.width()}px ${operador} (${tarefa.css("padding")}*4))`,
                         opacity: 0 
+                    }, 300, function () {
+                        tarefa.hide()
                     });
-});
+    
+    var transicao_tarefa = tarefa.height() + parseInt(tarefa.css("margin-bottom").split("px")) + (parseInt(tarefa.css("padding").split("px"))*2);
+    $(`#${tarefa.get(0).id} ~ *`).animate({
+                                                y: `-=${transicao_tarefa}px`
+                                            }, 300, function () {
+                                                $(this).css({ y: 0 })
+                                            }
+                                        );
+}); 
