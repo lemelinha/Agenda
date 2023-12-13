@@ -6,7 +6,7 @@ $("#form-cadastro").submit(function () {
     var senha = document.getElementById("senha-cadastro").value;
     var senha_confirmar = document.getElementById("senha-cadastro-confirmar").value;
     if (senha == senha_confirmar) {
-        document.getElementById("form-cadastro").submit();
+        $(this).submit();
     } else{
         $("#confirmar-senha").html("As senhas devem ser iguais");
         return false;
@@ -18,8 +18,9 @@ $(".botoes .btn").click(function () {
     
     $.ajax({
         type: "GET",
-        url: "static/mudar-st-tarefa.php",
+        url: "static/ajax.php",
         data: {
+            funcao: "AlterarST",
             cd_tarefa: id_array[2],
             alteracao: id_array[1]
         },
@@ -43,7 +44,7 @@ function AnimacaoTarefas(id_array){
                         opacity: 0 
                     }, 300, function () {
                         tarefa.hide()
-                    });
+                    }); // animação da tarefa para o lado do botao selecionado
     
     var transicao_tarefa = tarefa.height() + parseInt(tarefa.css("margin-bottom").split("px")) + (parseInt(tarefa.css("padding").split("px"))*2);
     $(`#${tarefa.get(0).id} ~ *`).animate({
@@ -51,5 +52,5 @@ function AnimacaoTarefas(id_array){
                                             }, 300, function () {
                                                 $(this).css({ y: 0 })
                                             }
-                                        );
+                                        ); // animacao das tarefas abaixo para cima, criando uma animação mais suave
 }

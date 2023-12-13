@@ -219,3 +219,23 @@
             <?php
         }
     }
+
+    function AlterarSTTarefa($alteracao, $cd_tarefa){
+        $sql = "
+            update tb_tarefas set 
+            st_tarefa = :alteracao,
+            dt_termino = current_date
+            where cd_tarefa= :cdtarefa;
+        ";
+
+        if ($alteracao == "concluir") {
+            $alterar_para = "C";
+        } else {
+            $alterar_para = "E";
+        }
+
+        $tarefa_alterada = $GLOBALS["conn"]->prepare($sql);
+        $tarefa_alterada->bindParam(":alteracao", $alterar_para);
+        $tarefa_alterada->bindParam(":cdtarefa", $cd_tarefa);
+        $tarefa_alterada->execute();
+    }

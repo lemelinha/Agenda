@@ -46,7 +46,7 @@
     <?php
         if(!empty($_GET)){
             if($_GET['form'] == 'Salvar Tarefa'){
-                var_dump($token);
+                //var_dump($token);
                 NovaTarefa($token->cd_usuario, $_GET['nome-nova-tarefa'], $_GET['desc-nova-tarefa'], $_GET['data-prazo']);
             }
         }
