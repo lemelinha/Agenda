@@ -15,6 +15,22 @@ $("#form-cadastro").submit(function () {
 
 $(".botoes .btn").click(function () {
     var id_array = $(this).get(0).id.split("-");
+    
+    $.ajax({
+        type: "GET",
+        url: "static/mudar-st-tarefa.php",
+        data: {
+            cd_tarefa: id_array[2],
+            alteracao: id_array[1]
+        },
+        dataType: "json",
+        success: function(response){
+            AnimacaoTarefas(id_array);
+        }
+    })
+});
+
+function AnimacaoTarefas(id_array){
     var tarefa = $(`#tarefa-${id_array[2]}`);
     var operador;
     if (id_array[1] == "concluir"){
@@ -36,4 +52,4 @@ $(".botoes .btn").click(function () {
                                                 $(this).css({ y: 0 })
                                             }
                                         );
-}); 
+}
