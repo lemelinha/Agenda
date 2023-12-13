@@ -4,8 +4,9 @@
     header("Content-Type: application/json");
 
     $sql = "
-            update tb_tarefas 
-            set st_tarefa= :alteracao
+            update tb_tarefas set 
+            st_tarefa = :alteracao,
+            dt_termino = current_date
             where cd_tarefa= :cdtarefa;
     ";
 
