@@ -24,7 +24,7 @@ $(".botoes .btn").click(function () {
             alteracao: id_array[1]
         },
         dataType: "json",
-        success: function(response){
+        success: function(){
             AnimacaoTarefas(id_array);
         }
     })
